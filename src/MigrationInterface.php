@@ -1,4 +1,5 @@
 <?php
+
 namespace Neuralpin\Migration;
 
 use PDO;

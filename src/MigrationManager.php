@@ -3,11 +3,11 @@
 namespace Neuralpin\Migration;
 
 use PDO;
-use Neuralpin\Migration\MigrationInterface;
 
 class MigrationManager
 {
     private PDO $pdo;
+
     private string $migrationDirectory;
 
     public function __construct(PDO $pdo, string $migrationDirectory)
@@ -29,13 +29,11 @@ class MigrationManager
             $files = array_reverse($files);
         }
 
-
         foreach ($files as $file) {
             $className = pathinfo($file, PATHINFO_FILENAME);
             $Migration = require $file;
 
-            if($Migration instanceof MigrationInterface)
-            {
+            if ($Migration instanceof MigrationInterface) {
                 $Migration->setPDO($this->pdo);
             }
 

@@ -1,8 +1,8 @@
 <?php
 
+use Neuralpin\Migration\MigrationManager;
 use PDO;
 use PHPUnit\Framework\TestCase;
-use Neuralpin\Migration\MigrationManager;
 
 class MigrationManagerTest extends TestCase
 {
@@ -11,12 +11,13 @@ class MigrationManagerTest extends TestCase
     private $MigrationManager;
 
     private string $databasePath = __DIR__.'/test.db';
+
     private string $migrationDirectory = __DIR__.'/migrations';
 
     protected function setUp(): void
     {
         // Create SQLite database
-        $this->pdo = new PDO('sqlite:'.$this->databasePath);
+        $this->pdo = new PDO("sqlite:{$this->databasePath}");
         $this->MigrationManager = new MigrationManager($this->pdo, $this->migrationDirectory);
 
         // Clean up the migrations table before each test

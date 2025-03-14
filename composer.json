@@ -1,0 +1,33 @@
+{
+    "name": "neuralpin/migration",
+    "type": "library",
+    "description": "Database migration management library",
+    "keywords": ["helper"],
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Ulises Rendón",
+            "email": "fdulises@outlook.com",
+            "homepage": "https://neuralpin.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Neuralpin\\Migration\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "7.2.x-dev",
+        "laravel/pint": "dev-main",
+        "phpunit/phpunit": "^12.0@dev",
+        "phpstan/phpstan": "2.1.x-dev"
+    },
+    "scripts": {
+        "analyze": "vendor/bin/phpstan analyse src",
+        "test": "vendor/bin/phpunit --bootstrap vendor/autoload.php test --do-not-cache-result",
+        "fixstyle": "./vendor/bin/pint",
+        "create-migration-script": "Neuralpin\\Migration\\FileCreator::start",
+        "create-migration": "@composer create-migration-script test/migrations"
+    }
+}
